@@ -140,7 +140,7 @@ async function getVerse(language = 'en', translationID, bookNum, chapterNum, ver
 	const book = books[bookNum - 1] || books[Object.keys(books)[0]];
 
 	// if data is cached
-	if (Object.keys(saved_data[language].translations[translationID].books[bookNum].chapters[chapterNum] || {}).length)
+	if (saved_data[language].translations[translationID].books[bookNum].chapters[chapterNum] && saved_data[language].translations[translationID].books[bookNum].chapters[chapterNum][verseNum])
 		return saved_data[language].translations[translationID].books[bookNum].chapters[chapterNum][verseNum];
 
 	const verseHTML = await getRequest(new URL(`${translation.link.replace('binav', 'b')}/${bookNum}/${chapterNum}/`, `https://wol.jw.org/`).toString())
